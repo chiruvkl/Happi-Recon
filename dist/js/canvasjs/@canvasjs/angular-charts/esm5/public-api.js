@@ -1,0 +1,6 @@
+/*
+ * Public API Surface of angular-charts
+ */
+export * from './lib/angular-charts.component';
+export * from './lib/angular-charts.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2FuZ3VsYXItY2hhcnRzLyIsInNvdXJjZXMiOlsicHVibGljLWFwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILGNBQWMsZ0NBQWdDLENBQUM7QUFDL0MsY0FBYyw2QkFBNkIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBQdWJsaWMgQVBJIFN1cmZhY2Ugb2YgYW5ndWxhci1jaGFydHNcbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi9hbmd1bGFyLWNoYXJ0cy5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvYW5ndWxhci1jaGFydHMubW9kdWxlJztcbiJdfQ==
