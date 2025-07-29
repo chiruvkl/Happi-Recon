@@ -11,16 +11,18 @@ if($pine_total_res){
 	$pine_total_cnt = $pine_total_assoc['total_rows'];
 }
 
-$sbi_total_query = "SELECT COUNT(*) AS total_rows, SUM(txn_amount) AS sbi_total, SUM(mdr_amount) AS mdr_amount 
+$sbi_total_query = "SELECT COUNT(*) AS total_rows, SUM(txn_amount) AS sbi_total, SUM(net_amount) AS net_amount, SUM(mdr_amount) AS mdr_amount 
 					FROM happi_sbi_transactions WHERE tran_date = '$get_date'";
 $sbi_total_res = mysqli_query($conn, $sbi_total_query);
 $sbi_total = 0;
 $sbi_total_cnt = 0;
 $sbi_mdr_amount = 0;
+$sbi_net_amount = 0;
 if($sbi_total_res){
 	$sbi_total_assoc = mysqli_fetch_assoc($sbi_total_res);
 	$sbi_total = $sbi_total_assoc['sbi_total'];
 	$sbi_mdr_amount = $sbi_total_assoc['mdr_amount'];
+	$sbi_net_amount = $sbi_total_assoc['net_amount'];
 	$sbi_total_cnt = $sbi_total_assoc['total_rows'];
 }
 
@@ -438,7 +440,7 @@ function formatIndianCurrency($number) {
 								<td><a href="dwd_sbi.php?get_date=<?php echo $get_date;?>"><?php echo $sbi_matched_count;?></a></td>
 								<td><a href="dwd_notm_sbi.php?get_date=<?php echo $get_date;?>"><?php echo $sbi_total_cnt - $sbi_matched_count;?></a></td>
 								<td><?php echo formatIndianCurrency($sbi_total);?></td>
-								<td><?php echo formatIndianCurrency($sbi_mdr_amount);?></td>
+								<td><?php echo formatIndianCurrency($sbi_total-$sbi_net_amount);?></td>
 							</tr>
 							<tr>
 								<td>HDFC</td>
