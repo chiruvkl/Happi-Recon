@@ -441,6 +441,7 @@ function formatIndianCurrency($number) {
 								<td><a href="dwd_notm_sbi.php?get_date=<?php echo $get_date;?>"><?php echo $sbi_total_cnt - $sbi_matched_count;?></a></td>
 								<td><?php echo formatIndianCurrency($sbi_total);?></td>
 								<td><?php echo formatIndianCurrency($sbi_total-$sbi_net_amount);?></td>
+								<!--<td><?php //echo formatIndianCurrency($sbi_mdr_amount);?></td>-->
 							</tr>
 							<tr>
 								<td>HDFC</td>
