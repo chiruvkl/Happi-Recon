@@ -26,7 +26,7 @@ if($sbi_total_res){
 	$sbi_total_cnt = $sbi_total_assoc['total_rows'];
 }
 
-$hdfc_total_query = "SELECT COUNT(*) AS total_rows, SUM(domestic_amt) AS hdfc_total,SUM(intl_amt) AS intl_amt, SUM(msf) AS msf_amt, SUM(igst_amt) AS igst_amt 
+$hdfc_total_query = "SELECT COUNT(*) AS total_rows, SUM(domestic_amt) AS hdfc_total,SUM(intl_amt) AS intl_amt, SUM(msf) AS msf_amt, SUM(net_amount) AS net_amount, SUM(igst_amt) AS igst_amt 
 					FROM happi_hdfc_transactions WHERE trans_date = '$get_date'";
 $hdfc_total_res = mysqli_query($conn, $hdfc_total_query);
 $hdfc_total = 0;
@@ -34,12 +34,14 @@ $hdfc_total_cnt = 0;
 $hdfc_mdr_amount = 0;
 $hdfc_igst_amount = 0;
 $hdfc_intl_amt = 0;
+$hdfc_net_amount = 0;
 if($hdfc_total_res){
 	$hdfc_total_assoc = mysqli_fetch_assoc($hdfc_total_res);
 	$hdfc_total = $hdfc_total_assoc['hdfc_total'];
 	$hdfc_mdr_amount = $hdfc_total_assoc['msf_amt'];
 	$hdfc_igst_amount = $hdfc_total_assoc['igst_amt'];
 	$hdfc_intl_amt = $hdfc_total_assoc['intl_amt'];
+	$hdfc_net_amount = $hdfc_total_assoc['net_amount'];
 	$hdfc_total_cnt = $hdfc_total_assoc['total_rows'];
 }
 $hdfc_total = $hdfc_total + $hdfc_intl_amt;
@@ -449,7 +451,8 @@ function formatIndianCurrency($number) {
 								<td><a href="dwd_hdfc.php?get_date=<?php echo $get_date;?>"><?php echo $hdfc_matched_count;?></a></td>
 								<td><a href="dwd_notm_hdfc.php?get_date=<?php echo $get_date;?>"><?php echo $hdfc_total_cnt - $hdfc_matched_count;?></a></td>
 								<td><?php echo formatIndianCurrency($hdfc_total);?></td>
-								<td><?php echo formatIndianCurrency($hdfc_mdr_amount);?></td>
+								<td><?php echo formatIndianCurrency($hdfc_total-$hdfc_net_amount);?></td>
+								<!--<td><?php //echo formatIndianCurrency($hdfc_mdr_amount);?></td>-->
 							</tr>
 							<tr>
 								<td>Phone-pe</td>
